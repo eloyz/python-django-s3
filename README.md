@@ -20,7 +20,7 @@ I illustrate how to connect two different ways.  The anonymous way allows you to
 ### Shortcut to connect
     import boto
     conn = boto.connect_s3(anon=True)  # acces to public files
-    conn = boto.connect_s3('<aws access key>', '<aws secret key>')  # access to all files
+    conn = boto.connect_s3('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY')  # access to all files
 
 This is just another way to make a connection object.
 
