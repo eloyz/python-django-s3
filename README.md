@@ -10,16 +10,19 @@ at [PyTexas][pytexas] and The [Python Web Development Houston Meetup][python-web
 
 ## Connect to S3
     from boto.s3.connection import S3Connection
-    conn = S3Connection(anon=True)
-    conn = S3Connection('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY')
+    conn = S3Connection(anon=True)  # access to public files
+    conn = S3Connection('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY')  # access to all files
 
 Please make sure to replace the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` with your credentials
 
+I illustrate how to connect two different ways.  The anonymous way allows you to access file that are public-read or public in general.  If the files are not public at all I recommend using the second method; the one that requires credentials.
+
 ### Shortcut to connect
     import boto
-    conn = boto.connect_s3(anon=True)
-    conn = boto.connect_s3('<aws access key>', '<aws secret key>')
+    conn = boto.connect_s3(anon=True)  # acces to public files
+    conn = boto.connect_s3('<aws access key>', '<aws secret key>')  # access to all files
 
+This is just another way to make a connection object.
 
 ## Set ACL
 
