@@ -25,7 +25,17 @@ I illustrate how to connect two different ways.  The anonymous way allows you to
 This is just another way to make a connection object.
 
 ## Set ACL
+There are canned **ACCESS CONTROL LIST** options.  These options control how accessible your files are and what type of authentication is required in order to read and write to them. Learn more [here][canned-acl].
 
+Canned ACL			|	Applies to 			|	Permissions added to ACL
+:-----------		|:------------			|:---------------------------
+private				|	Bucket and object	|	Owner gets FULL_CONTROL. No one else has access rights (default).
+public-read			|	Bucket and object	|	Owner gets FULL_CONTROL. The AllUsers group ( see Who Is a Grantee?) gets READ access.
+public-read-write	|	Bucket and object	|	Owner gets FULL_CONTROL. The AllUsers group gets READ and WRITE access. Granting this on a bucket is generally not recommended.
+authenticated-read	|	Bucket and object	|	Owner gets FULL_CONTROL. The AuthenticatedUsers group gets READ access.
+bucket-owner-read	|	Object				|	Object owner gets FULL_CONTROL. Bucket owner gets READ access. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it.
+bucket-owner-full-control	|	Object		|Both the object owner and the bucket owner get FULL_CONTROL over the object. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it.
+log-delivery-write	|	Bucket	|	The LogDelivery group gets WRITE and READ_ACP permissions on the bucket. For more information on logs, see (Server Access Logging).
 
 ### Set ACL for bucket
     bucket = conn.get_bucket('meetuphouston')
@@ -196,6 +206,6 @@ You can hard-code the mime-type or you can use `mimetypes` object to guess your 
 
 [pytexas]: [http://pytexas.org/2013/talks/54/]
 [python-web]:[http://www.meetup.com/python-web-houston/events/136739812/]
-
+[canned-acl]: [http://docs.aws.amazon.com/AmazonS3/latest/dev/ACLOverview.html#CannedACL]
 [upload-to]: [https://code.djangoproject.com/ticket/8918]
 [no-path]: https://docs.djangoproject.com/en/dev/ref/files/storage/#django.core.files.storage.Storage.path
